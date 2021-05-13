@@ -8,7 +8,9 @@
 }
 
 - (void) requestReview:(CDVInvokedUrlCommand*)command{
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.3")) {
+    if (@available(iOS 14.0, *)) {
+        [SKStoreReviewController requestReviewInScene:self.viewController.view.window.windowScene];
+    } else if (@available(iOS 10.3, *)){
         [SKStoreReviewController requestReview];
     }
 }
